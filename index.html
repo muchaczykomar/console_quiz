@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Simple Quiz</title>
+    </head>
+    <body>
+        <script>
+            (function() {
+/************************ OBJECTS & ARRAYS ************************/
+            
+                // Class constructor for questions
+                var Question = function(text, ansArr, corrAns) {
+                    return {
+                        content: text,
+                        answear: ansArr,
+                        correctAnswear: ansArr[corrAns] ? corrAns : console.log('Błędna odpowiedź'),
+                        displayQuestion: function(numberOfQuestion) {
+                            console.log(questions[numberOfQuestion].content + "?\n\n" + "Odpowiedzi:\n");
+                            Object.keys(questions[numberOfQuestion].answear).forEach(key => {
+                                console.log(key + ": " + questions[numberOfQuestion].answear[key] + "\n");
+                            });
+                            console.log("------------------------------------------------");
+                        }
+                    }
+                };
+                var SCORE = 0;
+                // Array to store questions
+                var questions = new Array();
+                // Array to store answears (in case if every question has just two answears);
+                var answears = ["Tak", "Nie"];
+
+/************************ ENGINE ************************/
+
+                // Bunch of Questions pushed into the Array 
+                questions.push(new Question("Masz mózg", answears, 1));
+                questions.push(new Question("Jesteś programistą", answears, 0));
+                questions.push(new Question("Czy chciałbyś żeby twój kierownik zarabiał więcej", ["Nie bardzo", "Może", "Oczywiście że tak"], 1));
+                questions.push(new Question("Czy chciałbyś zarabiać więcej", ["Głupie pytanie"], 0));
+                questions.push(new Question("Co ty kurcze wiesz o Javascripcie dzieciaku", answears, 0));
+                askQuestion(questions);
+                
+/************************ FUNCTIONS ************************/
+
+                // Random qiestion picker function
+                function pickQuestion(questions) {
+                    var pickedQuestion = Math.floor((Math.random() * questions.length));
+                    return pickedQuestion;
+                };
+                // Check if answear is correct
+                function isItCorrect(ans, numberOfQuestion) {
+                    if(ans !== 'exit') {
+                        ans == questions[numberOfQuestion].correctAnswear ? (function() {
+                            console.log("Udzieliłeś/aś poprawnej odpowiedzi: " + questions[numberOfQuestion].answear[ans])
+                            SCORE++;
+                        })(SCORE) : console.log("Udzieliłeś/aś niepoprawnej odpowiedzi (" + ans + "), poprawna odpowiedź to: " +                              questions[numberOfQuestion].answear[questions[numberOfQuestion].correctAnswear]);
+                        return function(SCORE) {
+                            console.log("Twój Wynik: " + SCORE);
+                            askQuestion(questions);
+                        }
+                    } else {
+                        return function(SCORE) {
+                            console.log("Twój ostateczny wynik: " + SCORE);
+                        } 
+                    };
+                };
+                // function asks first question and calls herself after answear 
+                function askQuestion(questions) {
+                    var numberOfQuestion = pickQuestion(questions);
+                    // Log to the console picked Question
+                    questions[numberOfQuestion].displayQuestion(numberOfQuestion);
+                    var ansPopup = prompt("Type number of Your answar here.");
+                    isItCorrect(ansPopup, numberOfQuestion)(SCORE);
+                };
+            })();
+        </script>
+    </body>
+</html>
