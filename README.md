@@ -1,3 +1,3 @@
 # es5_console_quiz
 
-this little fellow helped me understand basics of javascript, i've made this little quiz as a quickie reminder. Maybe someday I'll rebuild into something bigger.
+this little fellow helped me to understand basics of javascript, I've made this little quiz as a quick reminder.
