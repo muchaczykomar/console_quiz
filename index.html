@@ -1,80 +1,60 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Simple Quiz</title>
-    </head>
-    <body>
-        <script>
-            (function() {
-/************************ OBJECTS & ARRAYS ************************/
-            
-                // Class constructor for questions
-                var Question = function(text, ansArr, corrAns) {
-                    return {
-                        content: text,
-                        answear: ansArr,
-                        correctAnswear: ansArr[corrAns] ? corrAns : console.log('Błędna odpowiedź'),
-                        displayQuestion: function(numberOfQuestion) {
-                            console.log(questions[numberOfQuestion].content + "?\n\n" + "Odpowiedzi:\n");
-                            Object.keys(questions[numberOfQuestion].answear).forEach(key => {
-                                console.log(key + ": " + questions[numberOfQuestion].answear[key] + "\n");
-                            });
-                            console.log("------------------------------------------------");
-                        }
-                    }
-                };
-                var SCORE = 0;
-                // Array to store questions
-                var questions = new Array();
-                // Array to store answears (in case if every question has just two answears);
-                var answears = ["Tak", "Nie"];
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 
-/************************ ENGINE ************************/
+    <title>Simple Quiz</title>
+</head>
 
-                // Bunch of Questions pushed into the Array 
-                questions.push(new Question("Masz mózg", answears, 1));
-                questions.push(new Question("Jesteś programistą", answears, 0));
-                questions.push(new Question("Czy chciałbyś żeby twój kierownik zarabiał więcej", ["Nie bardzo", "Może", "Oczywiście że tak"], 1));
-                questions.push(new Question("Czy chciałbyś zarabiać więcej", ["Głupie pytanie"], 0));
-                questions.push(new Question("Co ty kurcze wiesz o Javascripcie dzieciaku", answears, 0));
-                askQuestion(questions);
-                
-/************************ FUNCTIONS ************************/
+<body>
+    <div class="container container-fluid">
+        <div class="row margin-bottom">
+            <div class="col col-sm col-md col-lg col-xl">
+                <div class="card">
+                    <div class="card-body title">
+                        Try to answear these questions
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row margin-horizontal">
+            <div class="col col-sm col-md col-lg col-xl">
+                <span id="question" class="question"></span>
+            </div>
+        </div>
+        <div class="row margin-horizontal">
+            <div class="col col-sm col-md col-lg col-xl">
+                <div id="answears"></div>
+            </div>
+            <div class="col col-sm col-md col-lg col-xl result-col">
+                <div id="current-result"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-sm col-md col-lg col-xl results-wrapper">
+                <span class="results-title">Twój Wynik: </span>
+                <span id="result" class="margin-left">0 pkt</span>
+            </div>
+            <div class="col col-sm col-md col-lg col-xl exit-wrapper">
+                <a class="btn btn-primary btn-lg" href="#" id="exit-btn" role="button">Zakończ</a>
+            </div>
+        </div>
+    </div>
 
-                // Random qiestion picker function
-                function pickQuestion(questions) {
-                    var pickedQuestion = Math.floor((Math.random() * questions.length));
-                    return pickedQuestion;
-                };
-                // Check if answear is correct
-                function isItCorrect(ans, numberOfQuestion) {
-                    if(ans !== 'exit') {
-                        ans == questions[numberOfQuestion].correctAnswear ? (function() {
-                            console.log("Udzieliłeś/aś poprawnej odpowiedzi: " + questions[numberOfQuestion].answear[ans])
-                            SCORE++;
-                        })(SCORE) : console.log("Udzieliłeś/aś niepoprawnej odpowiedzi (" + ans + "), poprawna odpowiedź to: " +                              questions[numberOfQuestion].answear[questions[numberOfQuestion].correctAnswear]);
-                        return function(SCORE) {
-                            console.log("Twój Wynik: " + SCORE);
-                            askQuestion(questions);
-                        }
-                    } else {
-                        return function(SCORE) {
-                            console.log("Twój ostateczny wynik: " + SCORE);
-                        } 
-                    };
-                };
-                // function asks first question and calls herself after answear 
-                function askQuestion(questions) {
-                    var numberOfQuestion = pickQuestion(questions);
-                    // Log to the console picked Question
-                    questions[numberOfQuestion].displayQuestion(numberOfQuestion);
-                    var ansPopup = prompt("Type number of Your answar here.");
-                    isItCorrect(ansPopup, numberOfQuestion)(SCORE);
-                };
-            })();
-        </script>
-    </body>
+    <script src="engine.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
