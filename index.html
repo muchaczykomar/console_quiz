@@ -5,56 +5,58 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Anton&amp;subset=latin-ext" rel="stylesheet">
     <title>Simple Quiz</title>
 </head>
 
 <body>
-    <div class="container container-fluid">
-        <div class="row margin-bottom">
-            <div class="col col-sm col-md col-lg col-xl">
-                <div class="card">
-                    <div class="card-body title">
-                        Try to answear these questions
-                    </div>
-                </div>
+    <div class="row row__header">
+        <div class="row__header__title padding-right">
+            Try to answear these questions
+        </div>
+    </div>
+    <div class="row row__container">
+        <div class="row margin-horizontal">
+            <div class="col">
+                <span id="question" class="row__container__question"></span>
             </div>
         </div>
         <div class="row margin-horizontal">
-            <div class="col col-sm col-md col-lg col-xl">
-                <span id="question" class="question"></span>
-            </div>
-        </div>
-        <div class="row margin-horizontal">
-            <div class="col col-sm col-md col-lg col-xl">
+            <div class="col">
                 <div id="answears"></div>
             </div>
-            <div class="col col-sm col-md col-lg col-xl result-col">
+            <div class="col result-col">
                 <div id="current-result"></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col col-sm col-md col-lg col-xl results-wrapper">
-                <span class="results-title">Twój Wynik: </span>
-                <span id="result" class="margin-left">0 pkt</span>
+        <div class="col row__container__exit-wrapper">
+            <a class="btn" href="#" id="exit-btn" role="button">Zakończ</a>
+        </div>
+        <div class="col row__container__results-wrapper">
+            <span class="row__container__results-title">Twój Wynik: </span>
+            <span id="result" class="margin-left">0 pkt</span>
+        </div>
+    </div>
+    <div class="row row__footer">
+        <div class="col">
+            <div class="row__footer__copyrights">
+                copyrights belong to muszkin
             </div>
-            <div class="col col-sm col-md col-lg col-xl exit-wrapper">
-                <a class="btn btn-primary btn-lg" href="#" id="exit-btn" role="button">Zakończ</a>
+        </div>
+        <div class="col">
+            <div class="row__footer__creator">
+                Created by muszkin
+            </div>
+        </div>
+        <div class="col">
+            <div class="row__footer__contact">
+                Find me on fb
             </div>
         </div>
     </div>
 
     <script src="engine.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
