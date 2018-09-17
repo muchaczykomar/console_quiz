@@ -11,7 +11,7 @@
         : console.log("Błędna odpowiedź"),
       displayQuestion: function(numberOfQuestion) {
         document.getElementById("question").innerHTML =
-          questions[numberOfQuestion].content + " ?";
+          questions[numberOfQuestion].content;
       }
     };
   };
@@ -19,28 +19,16 @@
   // Array to store questions
   var questions = new Array();
   // Array to store answears (in case if every question has just two answears);
-  var answears = ["Tak", "Nie", "Głupie pytanie", "Może"];
+  var answears = ["Tak", "Nie", "Może"];
 
   var numberOfQuestion = 0;
 
   /************************ ENGINE ************************/
 
   // Bunch of Questions pushed into the Array
-  questions.push(new Question("Masz mózg", answears, 1));
-  questions.push(new Question("Jesteś programistą", answears, 0));
-  questions.push(
-    new Question(
-      "Czy chciałbyś żeby twój kierownik zarabiał więcej",
-      ["Nie bardzo", "Może", "Oczywiście że tak"],
-      1
-    )
-  );
-  questions.push(
-    new Question("Czy chciałbyś zarabiać więcej", ["Głupie pytanie"], 0)
-  );
-  questions.push(
-    new Question("Co ty kurcze wiesz o Javascripcie dzieciaku", answears, 0)
-  );
+  questions.push(new Question("Tak ?", answears, 0));
+  questions.push(new Question("Nie ?", answears, 1));
+  questions.push(new Question("A może ?", answears, 2));
 
   document.getElementById("exit-btn").addEventListener("click", function() {
     exit();
@@ -76,14 +64,20 @@
   function exit() {
     updateScore(SCORE);
     if (SCORE > 0) {
-      document.querySelector(".container").classList.add("game-won");
+      document.querySelector(".row__container").classList.add("game-won");
+      window.alert("You Won !");
     } else {
-      document.querySelector(".container").classList.add("game-lost");
+      document.querySelector(".row__container").classList.add("game-lost");
+      window.alert("You Lost !");
     }
     document.getElementById("exit-btn").classList.add("disabled");
     document.getElementById("exit-btn").setAttribute("disabled", true);
     var old_element = document.getElementById("answears");
     var new_element = old_element.cloneNode(true);
+    var childLiList = new_element.children[0].children;
+    for (var i = 0; i < childLiList.length; i++) {
+      childLiList[i].classList.add("li--disabled");
+    }
     old_element.parentNode.replaceChild(new_element, old_element);
   }
   function isItCorrect(ans, numberOfQuestion) {
@@ -112,7 +106,6 @@
     document.getElementById("result").innerHTML = SCORE + " pkt";
   }
 
-  // function asks first question and calls herself after answear
   function askQuestion(questions) {
     numberOfQuestion = pickQuestion(questions);
     questions[numberOfQuestion].displayQuestion(numberOfQuestion);

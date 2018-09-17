@@ -17,25 +17,30 @@
         </div>
     </div>
     <div class="row row__container">
-        <div class="row margin-horizontal">
-            <div class="col">
-                <span id="question" class="row__container__question"></span>
+        <div class="col">
+
+            <div class="row row__container__question margin-horizontal margin-top">
+                <div class="col">
+                    <span id="question" class="row__container__question"></span>
+                </div>
             </div>
-        </div>
-        <div class="row margin-horizontal">
-            <div class="col">
-                <div id="answears"></div>
+            <div class="row row__container__center margin-horizontal">
+                <div class="col">
+                    <div id="answears"></div>
+                </div>
+                <div class="col result-col">
+                    <div id="current-result"></div>
+                </div>
             </div>
-            <div class="col result-col">
-                <div id="current-result"></div>
+            <div class="row row__container__result margin-horizontal margin-bottom card">
+                <div class="col row__container__exit-wrapper">
+                    <button class="btn" href="#" id="exit-btn" role="button">Zakończ</button>
+                </div>
+                <div class="col row__container__results-wrapper">
+                    <span class="row__container__results-title">Twój Wynik: </span>
+                    <span id="result" class="margin-left">0 pkt</span>
+                </div>
             </div>
-        </div>
-        <div class="col row__container__exit-wrapper">
-            <a class="btn" href="#" id="exit-btn" role="button">Zakończ</a>
-        </div>
-        <div class="col row__container__results-wrapper">
-            <span class="row__container__results-title">Twój Wynik: </span>
-            <span id="result" class="margin-left">0 pkt</span>
         </div>
     </div>
     <div class="row row__footer">
@@ -51,7 +56,7 @@
         </div>
         <div class="col">
             <div class="row__footer__contact">
-                Find me on fb
+                <a href="https://www.facebook.com/muchamateusz">Find me on fb</a>
             </div>
         </div>
     </div>
